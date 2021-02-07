@@ -20,7 +20,8 @@ db = sqll('database_game.db')
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     if (not db.subscriber_exists(message.from_user.id)):
-        db.add_user(message.from_user.id, col_quetions=0)
+        col_quetion = 1
+        db.add_user(message.from_user.id, col_quetions=col_quetion)
         await message.answer('Вы успешно начали игру.')
         await message.answer(config.starts_text_message, reply_markup=inline_kb1)
     elif db.get_quetions(user_id=message.from_user.id) == 0:
